@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textArea: UITextView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var previewText: UITextView!
     @IBOutlet weak var hideKeyboard: UIButton!
     
     var demoString:String!
@@ -43,7 +43,8 @@ class ViewController: UIViewController, UITextViewDelegate {
     }
 
     func textViewDidChange(textView: UITextView) {
-        self.label.attributedText = AKAttributeKit.parseString(textView.text)
+        self.previewText.attributedText = AKAttributeKit.parseStringFlat(textView.text)
+        self.previewText.textAlignment = NSTextAlignment.Center
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -58,7 +59,8 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func resetToDemoText(sender: AnyObject) {
         self.textArea.text = demoString
-        self.label.attributedText = AKAttributeKit.parseString(demoString)
+        self.previewText.attributedText = AKAttributeKit.parseStringFlat(demoString)
+        self.previewText.textAlignment = NSTextAlignment.Center
     }
     
     

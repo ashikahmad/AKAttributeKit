@@ -18,17 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqK-16-Bv1">
-                                <rect key="frame" x="16" y="240" width="568" height="201"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWa-FD-UD1">
-                                <rect key="frame" x="16" y="20" width="568" height="201"/>
+                                <rect key="frame" x="16" y="40" width="568" height="201"/>
                                 <color key="backgroundColor" red="0.27306547619047616" green="0.27306547619047616" blue="0.27306547619047616" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.32425555295087793" green="1" blue="0.40343572065041866" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
@@ -36,8 +30,14 @@
                                 </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3T-1q-EUR">
-                                <rect key="frame" x="233" y="449" width="135" height="30"/>
+                                <rect key="frame" x="210" y="542" width="181" height="38"/>
+                                <color key="backgroundColor" red="0.23900462959999999" green="0.23900462959999999" blue="0.23900462959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="181" id="Ey5-VP-C8Y"/>
+                                    <constraint firstAttribute="height" constant="38" id="qHW-bD-YxN"/>
+                                </constraints>
                                 <state key="normal" title="Reset to Demo Text">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -45,8 +45,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2oS-u2-crN">
-                                <rect key="frame" x="444" y="220" width="139" height="30"/>
-                                <color key="backgroundColor" red="0.65912285052910047" green="0.65912285052910047" blue="0.65912285052910047" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="444" y="240" width="139" height="30"/>
+                                <color key="backgroundColor" red="0.65912285052910047" green="0.65912285052910047" blue="0.65912285052910047" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="139" id="N4V-UP-qvy"/>
                                     <constraint firstAttribute="height" constant="30" id="NL6-CG-YEX"/>
@@ -59,26 +59,34 @@
                                     <action selector="doHideKeyboard:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PE7-f6-EKm"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QLl-f4-MQk">
+                                <rect key="frame" x="16" y="270" width="568" height="201"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WWa-FD-UD1" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="1/3" constant="1" id="2yU-Nz-hiu"/>
-                            <constraint firstItem="tqK-16-Bv1" firstAttribute="height" secondItem="WWa-FD-UD1" secondAttribute="height" id="9T6-fZ-ZXZ"/>
+                            <constraint firstItem="QLl-f4-MQk" firstAttribute="top" secondItem="WWa-FD-UD1" secondAttribute="bottom" constant="29" id="BTJ-FK-AWZ"/>
                             <constraint firstItem="WWa-FD-UD1" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="KLO-0x-2w2"/>
-                            <constraint firstItem="tqK-16-Bv1" firstAttribute="top" secondItem="WWa-FD-UD1" secondAttribute="bottom" constant="19" id="MXA-JX-HBc"/>
+                            <constraint firstItem="WWa-FD-UD1" firstAttribute="height" secondItem="QLl-f4-MQk" secondAttribute="height" id="KOH-bU-0B0"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="k3T-1q-EUR" secondAttribute="bottom" constant="20" id="L1Z-xF-ktv"/>
+                            <constraint firstItem="WWa-FD-UD1" firstAttribute="centerX" secondItem="QLl-f4-MQk" secondAttribute="centerX" id="MA1-5d-F5m"/>
                             <constraint firstItem="WWa-FD-UD1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="P9a-Fk-iRF"/>
                             <constraint firstAttribute="centerX" secondItem="k3T-1q-EUR" secondAttribute="centerX" constant="-0.5" id="Svr-uU-ZxZ"/>
-                            <constraint firstItem="tqK-16-Bv1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="UlR-LJ-3Zf"/>
-                            <constraint firstItem="tqK-16-Bv1" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="fXa-6n-I8a"/>
                             <constraint firstItem="WWa-FD-UD1" firstAttribute="trailing" secondItem="2oS-u2-crN" secondAttribute="trailing" constant="1" id="oJs-sV-fvO"/>
-                            <constraint firstItem="k3T-1q-EUR" firstAttribute="top" secondItem="tqK-16-Bv1" secondAttribute="bottom" constant="8" id="pfX-M0-qeM"/>
-                            <constraint firstItem="WWa-FD-UD1" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="pxT-mN-ai0"/>
+                            <constraint firstItem="WWa-FD-UD1" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="pxT-mN-ai0"/>
                             <constraint firstItem="2oS-u2-crN" firstAttribute="top" secondItem="WWa-FD-UD1" secondAttribute="bottom" constant="-1" id="uOK-q4-oeS"/>
+                            <constraint firstItem="WWa-FD-UD1" firstAttribute="width" secondItem="QLl-f4-MQk" secondAttribute="width" id="x0E-Wj-Jsi"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="hideKeyboard" destination="2oS-u2-crN" id="f3k-Ey-UJN"/>
-                        <outlet property="label" destination="tqK-16-Bv1" id="hlb-xX-nyH"/>
+                        <outlet property="previewText" destination="QLl-f4-MQk" id="tA8-rJ-FtA"/>
                         <outlet property="textArea" destination="WWa-FD-UD1" id="CjK-OV-oLC"/>
                     </connections>
                 </viewController>
