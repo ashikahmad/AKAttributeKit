@@ -43,7 +43,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     }
 
     func textViewDidChange(textView: UITextView) {
-        self.previewText.attributedText = AKAttributeKit.parseStringFlat(textView.text)
+        self.previewText.attributedText = AKAttributeKit.parseString(textView.text)
         self.previewText.textAlignment = NSTextAlignment.Center
     }
     
@@ -59,7 +59,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func resetToDemoText(sender: AnyObject) {
         self.textArea.text = demoString
-        self.previewText.attributedText = AKAttributeKit.parseStringFlat(demoString)
+        self.previewText.attributedText = AKAttributeKit.parseString(demoString)
         self.previewText.textAlignment = NSTextAlignment.Center
     }
     
