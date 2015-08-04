@@ -23,7 +23,8 @@ class ViewController: UIViewController, UITextViewDelegate {
             "<u \(NSUnderlineStyle.StyleDouble.rawValue|NSUnderlineStyle.PatternDot.rawValue)>",
             "how <font HelveticaNeue-ultralight|28>Easy</font> it is</u>.",
             "\n<font Arial|12>Edit text above and see it attributed below ",
-            "</font><font Arial|22>immediately!</font>"].reduce("", +)
+            "</font><font Arial|22>immediately!</font>\n",
+            "By the way, it supports <a http://google.com>link</a> too"].reduce("", combine: +)
         demoString = str
         
         self.resetToDemoText(self)

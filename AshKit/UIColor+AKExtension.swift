@@ -18,11 +18,11 @@ extension UIColor {
     */
     class func colorFromString(hexString hexStr: String)->UIColor?
     {
-        // 1. Make uppercase co reduce conditions
+        // 1. Make uppercase to reduce conditions
         var cStr = hexStr.trim().uppercaseString;
         
         // 2. Check if valid input
-        var validRange = cStr.rangeOfString("(0X|#)?[0-9A-F]+", options: NSStringCompareOptions.RegularExpressionSearch)
+        var validRange = cStr.rangeOfString("\\b(0X|#)?([0-9A-F]{3,4}|[0-9A-F]{6}|[0-9A-F]{8})\\b", options: NSStringCompareOptions.RegularExpressionSearch)
         if validRange == nil || cStr.fullRange() != validRange! {
             print("Error: Inavlid format string: \(hexStr). Check documantation for correct formats")
             return nil
@@ -51,7 +51,7 @@ extension UIColor {
         let scanner = NSScanner(string: cStr)
         var hexValue: CUnsignedLongLong = 0
         if scanner.scanHexLongLong(&hexValue) {
-            if countElements(cStr) == 8 {
+            if count(cStr) == 8 {
                 return UIColor(rgba:hexValue)
             } else {
                 return UIColor(rgb:hexValue)

@@ -13,7 +13,7 @@ extension String {
     var length:Int {
         get {
             // ???: What is better to use here? (countElements/utf16Count
-            return countElements(self)
+            return count(self)
         }
     }
     
@@ -27,6 +27,10 @@ extension String {
         } else {
             return 0
         }
+    }
+    
+    func toFailSafeFloat()->Float {
+        return (self.trim() as NSString).floatValue
     }
     
     func fullRange()->Range<String.Index> {
