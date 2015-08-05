@@ -17,8 +17,20 @@ Tag | Attribute | Example
  t | NSStrikethroughStyleAttributeName | `<t 1>Wrong</t>`
  u | NSUnderlineStyleAttributeName | `<u 1>Important</u>`
  
- 
- 
+Install
+-------
+
+Just copy **AshKit** folder to your project. That's it! You are all set :)
+
+Use
+----
+```swift
+var myAttributedText = AKAttributeKit.parseString("My <font Arial|25>big <fg #ff0>yellow</fg></font> text")
+// or
+myAttributedText = "<t 1>Don't</t> Do it!".toAttributedString()
+
+myLabel.attributedText = myAttributedText
+``` 
  
 Sneakpeak / Play Around
 -----------------------
@@ -27,18 +39,3 @@ Run the demo provided to play around with these tags and have a first-hand exper
 
 
 ![Screenshot](./Screenshot.png "AKAttributeKit in Action!")
-
-Install
--------
-
-Just copy **AshKit** folder to your project. That's it! You are all set :)
-
-Use
----
-```swift
-var myAttributedText = AKAttributeKit.parseString("My <font Arial|25>big <fg #ff0>yellow</fg></font> text")
-// or
-myAttributedText = "<t 1>Don't</t> Do it!".toAttributedString()
-
-myLabel.attributedText = myAttributedText
-```
