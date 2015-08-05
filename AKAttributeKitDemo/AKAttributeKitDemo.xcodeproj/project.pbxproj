@@ -13,6 +13,7 @@
 		3B1FAF021A06888D007F04A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FAF011A06888D007F04A7 /* Images.xcassets */; };
 		3B1FAF051A06888D007F04A7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FAF031A06888D007F04A7 /* LaunchScreen.xib */; };
 		3B1FAF111A06888D007F04A7 /* AKAttributeKitDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FAF101A06888D007F04A7 /* AKAttributeKitDemoTests.swift */; };
+		3B7F45511B72504000B8B83A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F45501B72504000B8B83A /* README.md */; };
 		3BA7B2D91A09176300D52A48 /* AKAttributeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7B2D81A09176300D52A48 /* AKAttributeKit.swift */; };
 		3BFCEC331A0D4A22008D4BA9 /* String+AKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC321A0D4A22008D4BA9 /* String+AKExtension.swift */; };
 		3BFCEC351A0D4A96008D4BA9 /* UIColor+AKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC341A0D4A96008D4BA9 /* UIColor+AKExtension.swift */; };
@@ -42,6 +43,7 @@
 		3B1FAF0A1A06888D007F04A7 /* AKAttributeKitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AKAttributeKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1FAF0F1A06888D007F04A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B1FAF101A06888D007F04A7 /* AKAttributeKitDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKAttributeKitDemoTests.swift; sourceTree = "<group>"; };
+		3B7F45501B72504000B8B83A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		3BA7B2D81A09176300D52A48 /* AKAttributeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKAttributeKit.swift; sourceTree = "<group>"; };
 		3BFCEC321A0D4A22008D4BA9 /* String+AKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AKExtension.swift"; sourceTree = "<group>"; };
 		3BFCEC341A0D4A96008D4BA9 /* UIColor+AKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AKExtension.swift"; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		3B1FAEF71A06888D007F04A7 /* AKAttributeKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3B7F45501B72504000B8B83A /* README.md */,
 				3BA7B2D71A09176300D52A48 /* AshKit */,
 				3B1FAEFA1A06888D007F04A7 /* AppDelegate.swift */,
 				3B1FAEFC1A06888D007F04A7 /* ViewController.swift */,
@@ -233,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B7F45511B72504000B8B83A /* README.md in Sources */,
 				3B1FAEFD1A06888D007F04A7 /* ViewController.swift in Sources */,
 				3BFCEC331A0D4A22008D4BA9 /* String+AKExtension.swift in Sources */,
 				3B1FAEFB1A06888D007F04A7 /* AppDelegate.swift in Sources */,
