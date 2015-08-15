@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 extension String {
+    
+    //------------------------------------------------------
+    // MARK: Common Utils
+    //------------------------------------------------------
+    
     var length:Int {
         get {
             // ???: What is better to use here? (countElements/utf16Count
@@ -20,6 +25,18 @@ extension String {
     func trim()->String {
         return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
+    
+    func toUIColor()->UIColor? {
+        return UIColor.colorFromString(hexString: self)
+    }
+    
+    func toAttributedString()->NSMutableAttributedString {
+        return AKAttributeKit.parseString(self)
+    }
+    
+    //------------------------------------------------------
+    // MARK: Number Conversion
+    //------------------------------------------------------
     
     func toFailSafeInt()->Int {
         if let value = self.trim().toInt() {
@@ -33,21 +50,14 @@ extension String {
         return (self.trim() as NSString).floatValue
     }
     
-    func fullRange()->Range<String.Index> {
-        return self.startIndex..<self.endIndex
-    }
+    //------------------------------------------------------
+    // MARK: Range <=> NSRange
+    //------------------------------------------------------
     
-    func indexFromStringIndex(stringIndex:String.Index)->Int {
-        let index16 = String.UTF16View.Index(stringIndex, within:utf16)
-        return (index16 - utf16.startIndex)
-    }
-    
-    func stringIndexFromIndex(indx:Int)->String.Index? {
-        let from16 = advance(utf16.startIndex, indx, utf16.endIndex)
-        if let from = String.Index(from16, within:self) {
-            return from
+    var fullRange:Range<String.Index> {
+        get {
+            return self.startIndex..<self.endIndex
         }
-        return nil
     }
     
     // Courtesy: Martin R's answer on StackOverflow
@@ -69,11 +79,21 @@ extension String {
         return NSMakeRange(from - utf16view.startIndex, to - from)
     }
     
-    func toUIColor()->UIColor? {
-        return UIColor.colorFromString(hexString: self)
+    //------------------------------------------------------
+    // MARK: String.Index <=> Int
+    //------------------------------------------------------
+    
+    func indexFromStringIndex(stringIndex:String.Index)->Int {
+        let index16 = String.UTF16View.Index(stringIndex, within:utf16)
+        return (index16 - utf16.startIndex)
     }
     
-    func toAttributedString()->NSMutableAttributedString {
-        return AKAttributeKit.parseString(self)
+    func stringIndexFromIndex(indx:Int)->String.Index? {
+        let from16 = advance(utf16.startIndex, indx, utf16.endIndex)
+        if let from = String.Index(from16, within:self) {
+            return from
+        }
+        return nil
     }
+    
 }

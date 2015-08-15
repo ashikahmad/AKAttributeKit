@@ -109,7 +109,7 @@ class AKAttributeKit {
         let tagRegex = "</?[a-zA-Z][^<>]*>"
         let regexOpt = NSStringCompareOptions.RegularExpressionSearch
         var formatingStr = str;
-        var searchRange = formatingStr.fullRange()
+        var searchRange = formatingStr.fullRange
         
         // Parse tags
         while let tagRange = formatingStr.rangeOfString(tagRegex, options: regexOpt, range: searchRange) {
