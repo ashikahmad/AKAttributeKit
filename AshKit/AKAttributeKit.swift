@@ -118,17 +118,19 @@ class AKAttributeKit {
             if wholeTag.hasPrefix("</") { // Closing Tag
                 let tag = wholeTag.substringWithRange(advance(wholeTag.startIndex, 2)..<wholeTag.endIndex.predecessor())
                 if let tagIndex = self.indexOfLatestOpenTag(ofType: tag, inQeue: tags) {
-                    let tagStart = advance(formatingStr.startIndex, tags[tagIndex].location)
-                    tags[tagIndex].length = distance(tagStart, tagRange.startIndex)
-                    validTag = true
+                    if let openingTagRange = formatingStr.rangeFromNSRange(NSMakeRange(tags[tagIndex].location, 1)) {
+                        tags[tagIndex].length = formatingStr.NSRangeFromRange(openingTagRange.startIndex..<tagRange.startIndex).length
+                        validTag = true
+                    }
                 }
             } else { // Starting Tag
                 let tagWithParams = wholeTag.substringWithRange(wholeTag.startIndex.successor()..<wholeTag.endIndex.predecessor())
                 let tag = tagWithParams.componentsSeparatedByString(" ")[0]
                 if let _ = AttributeType(rawValue: tag) {
                     if let tagNameRange = tagWithParams.rangeOfString(tag) {
+                        let tagNSRange = formatingStr.NSRangeFromRange(tagRange)
                         let params = tagWithParams.stringByReplacingCharactersInRange(tagNameRange, withString: "").trim()
-                        var attrTag = AttributeTag(tag: tag, params: params, location: distance(formatingStr.startIndex, tagRange.startIndex))
+                        var attrTag = AttributeTag(tag: tag, params: params, location: tagNSRange.location)
                         tags.append(attrTag)
                         validTag = true
                     }

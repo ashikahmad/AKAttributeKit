@@ -23,10 +23,12 @@ extension UIColor {
         
         // 2. Check if valid input
         var validRange = cStr.rangeOfString("\\b(0X|#)?([0-9A-F]{3,4}|[0-9A-F]{6}|[0-9A-F]{8})\\b", options: NSStringCompareOptions.RegularExpressionSearch)
-        if validRange == nil || cStr.fullRange() != validRange! {
+        if validRange == nil {
             print("Error: Inavlid format string: \(hexStr). Check documantation for correct formats")
             return nil
         }
+        
+        cStr = cStr.substringWithRange(validRange!)
         
         if(cStr.hasPrefix("0X")) {
             cStr = cStr.substringFromIndex(advance(cStr.startIndex, 2))
