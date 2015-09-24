@@ -1,0 +1,14 @@
+PODS:
+  - AKAttributeKit (0.1.0)
+
+DEPENDENCIES:
+  - AKAttributeKit (from `../`)
+
+EXTERNAL SOURCES:
+  AKAttributeKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AKAttributeKit: deb39504bdcf57740fbd44866ff1c670157f35dc
+
+COCOAPODS: 0.38.2
