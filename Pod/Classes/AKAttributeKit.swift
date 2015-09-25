@@ -188,7 +188,7 @@ public class AKAttributeKit {
         var components = fontStr.componentsSeparatedByString("|");
         if components.count >= 2 {
             let fontName = components[0].trim()
-            let fontSize = components[1].toFailSafeInt()
+            let fontSize = components[1].toFailSafeFloat()
             if let font = UIFont(name: fontName, size: CGFloat(fontSize)) {
                 return font
             }
@@ -221,5 +221,11 @@ public class AKAttributeKit {
         var fVal:Float = Float(value)
         fVal /= 255.0
         return CGFloat(fVal);
+    }
+}
+
+public extension UIFont {
+    public func asAKAttribute()->String {
+        return "\(fontName)|\(pointSize)"
     }
 }
