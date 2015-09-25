@@ -55,7 +55,9 @@ Below is some TODOs that I have plan to implement. New ideas and/or help on curr
 - [ ] For common tags with (almost) obvius choices make parameter optional.
 	- [x] underline
 	- [ ] italic
+	- [x] Strike through
 - [ ] Support OSX
+- [ ] Ability yo escape a tag
 
 ## Author
 
