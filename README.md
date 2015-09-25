@@ -1,4 +1,4 @@
-# <span style="color:#0c0">AKAttribute</span><i style="color:#ccc">Kit</i>
+# AKAttribute<i>Kit</i>
 
 [![CI Status](http://img.shields.io/travis/Ashik uddin Ahmad/AKAttributeKit.svg?style=flat)](https://travis-ci.org/Ashik uddin Ahmad/AKAttributeKit)
 [![Version](https://img.shields.io/cocoapods/v/AKAttributeKit.svg?style=flat)](http://cocoapods.org/pods/AKAttributeKit)
