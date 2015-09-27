@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "AKAttributeKit"
-  s.version          = "0.1.1"
+  s.version          = "0.2.0"
   s.summary          = "NSAttributedString with no hassle, just fun! Add attributes more like HTML tags right into the string."
 
 # This description is used to generate tags and improve search results.
