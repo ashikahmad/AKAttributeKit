@@ -29,7 +29,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-- XCode 7
+- Xcode 7
 - Swift 2
 - iOS 8.0+
 
