@@ -29,8 +29,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-- XCode 7
-- Swift 2
+- XCode 8.1
+- Swift 3
 - iOS 8.0+
 
 ## HTML-ish tags, not HTML
