@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'AKAttributeKit_Example', :exclusive => true do
+  pod "AKAttributeKit", :path => "../"
+end
+
+target 'AKAttributeKit_Tests', :exclusive => true do
+  pod "AKAttributeKit", :path => "../"
+
+  
+end
