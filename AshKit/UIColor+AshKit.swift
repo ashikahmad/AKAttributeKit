@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-extension UIColor {
-    enum ParseError: Error {
+public extension UIColor {
+    public enum ParseError: Error {
         // "Error: Inavlid format string: \(hexStr). Check documantation for correct formats"
         case InvalidFormat
     }
