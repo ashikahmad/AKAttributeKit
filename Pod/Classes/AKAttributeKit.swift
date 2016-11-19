@@ -20,7 +20,7 @@ DEPENDENCIES:
 3. UIFont+AKExtension.swift
 */
 
-public class AKAttributeKit {
+open class AKAttributeKit {
     
     /*
     Supported List of NS**AttributeName
@@ -127,7 +127,7 @@ public class AKAttributeKit {
         /// Ex: `<uc #f00>`
         case uc = "uc"
         
-        var attributeName:String {
+        var name: String {
             switch(self) {
             case .a    : return NSLinkAttributeName
             case .base : return NSBaselineOffsetAttributeName
@@ -146,131 +146,132 @@ public class AKAttributeKit {
             }
         }
         
-        func valueForParams(param:String)->AnyObject? {
+        func valueForParams(_ param:String)->AnyObject? {
             switch(self) {
             case .bg, .fg, .sc, .tc, .uc:
                 return AKAttributeKit.colorFromString(param)
             case .u, .t:
-                return Int(param) ?? 1
+                return (Int(param) ?? 1) as AnyObject?
             case .base, .ex, .k, .sw:
-                return param.toFailSafeFloat()
+                return param.toFailSafeFloat() as AnyObject?
             case .i:
-                return Float(param) ?? 0.25
+                return (Float(param) ?? 0.25) as AnyObject?
             case .font:
                 return AKAttributeKit.fontFromString(param)
             case .a:
-                return NSURL(string: param)
+                return URL(string: param) as AnyObject?
             }
         }
     }
     
-    private struct AttributeTag {
-        var tag:String
-        var params:String
-        var location:Int
-        var length:Int = -1
+    class AKAttributeTag {
+        let wholeTag: String
+        var range: NSRange
         
-        var isOpen:Bool { return length < 0; }
-        var isEmpty:Bool { return length <= 0; }
+        private(set) var isOpeningTag: Bool = false
+        private(set) var name: String = ""
+        private(set) var paramString: String?
         
-        init(tag t:String, params p:String, location l:Int) {
-            tag = t; params = p; location = l;
-            length = -1;
+        // Should only be set to opening tags
+        var endingTagIndex: Int?
+        
+        private func processWholeTag() {
+            isOpeningTag = !wholeTag.hasPrefix("</")
+            
+            let strippedTag = wholeTag.removing(prefix: isOpeningTag ? "<":"</").removing(suffix: ">").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            name = strippedTag.components(separatedBy: CharacterSet.whitespacesAndNewlines).first ?? ""
+            if isOpeningTag {
+                paramString = strippedTag.removing(prefix: name).trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                if paramString?.length == 0 { paramString = nil }
+            }
+        }
+        
+        init(wholeTag: String, range: NSRange) {
+            self.wholeTag = wholeTag
+            self.range = range
+            processWholeTag()
         }
     }
     
-    // Another approach to support inner tag of same type and partial inner tag
-    public class func parseString(str:String)->NSMutableAttributedString
-    {
-        var tags:[AttributeTag] = []
+    public class func parseString(_ str:String)->NSMutableAttributedString {
         let tagRegex = "</?[a-zA-Z][^<>]*>"
-        let regexOpt = NSStringCompareOptions.RegularExpressionSearch
-        var formatingStr = str;
-        var searchRange = formatingStr.fullRange
+        var tagQueue:[AKAttributeTag] = []
+        var attrStr = NSMutableAttributedString(string: str)
         
-        // Parse tags
-        while let tagRange = formatingStr.rangeOfString(tagRegex, options: regexOpt, range: searchRange) {
-            let wholeTag = formatingStr.substringWithRange(tagRange)
-            var validTag = false
-            if wholeTag.hasPrefix("</") { // Closing Tag
-                let tag = wholeTag.substringWithRange(wholeTag.startIndex.advancedBy(2)..<wholeTag.endIndex.predecessor())
-                if let tagIndex = self.indexOfLatestOpenTag(ofType: tag, inQeue: tags) {
-                    if let openingIndex = formatingStr.stringIndexFromIndex(tags[tagIndex].location) {
-                        tags[tagIndex].length = formatingStr.NSRangeFromRange(openingIndex..<tagRange.startIndex).length
-                        validTag = true
+        if let regex = try? NSRegularExpression(pattern: tagRegex, options: .dotMatchesLineSeparators) {
+            let matches = regex.matches(in: str, options: NSRegularExpression.MatchingOptions.reportCompletion, range: NSRange(location: 0, length: (str as NSString).length))
+            
+            // Map all tags
+            for match in matches {
+                let wholeTag = (str as NSString).substring(with: match.range)
+                let tag = AKAttributeTag(wholeTag: wholeTag, range: match.range)
+                if tag.isOpeningTag {
+                    tagQueue.append(tag)
+                } else {
+                    for index in (0..<tagQueue.count).reversed() {
+                        let openTag = tagQueue[index]
+                        if !openTag.isOpeningTag { continue }
+                        if openTag.endingTagIndex != nil { continue }
+                        if tag.name == openTag.name {
+                            openTag.endingTagIndex = tagQueue.count
+                            break
+                        }
                     }
+                    tagQueue.append(tag)
                 }
-            } else { // Starting Tag
-                let tagWithParams = wholeTag.substringWithRange(wholeTag.startIndex.successor()..<wholeTag.endIndex.predecessor())
-                let tag = tagWithParams.componentsSeparatedByString(" ")[0]
-                if let _ = AttributeType(rawValue: tag) {
-                    if let tagNameRange = tagWithParams.rangeOfString(tag) {
-                        let loc = formatingStr.indexFromStringIndex(tagRange.startIndex)
-                        let params = tagWithParams.stringByReplacingCharactersInRange(tagNameRange, withString: "").trim()
-                        let attrTag = AttributeTag(tag: tag, params: params, location: loc)
-                        tags.append(attrTag)
-                        validTag = true
+            }
+            
+            func removeTag(index: Int) {
+                let tag = tagQueue[index]
+                attrStr.replaceCharacters(in: tag.range, with: NSAttributedString())
+                let nextIndex = index+1
+                if nextIndex < tagQueue.count {
+                    for tIndex in nextIndex..<tagQueue.count {
+                        tagQueue[tIndex].range.location -= tag.range.length
                     }
                 }
             }
             
-            if validTag {
-                let currentDistance = formatingStr.startIndex.distanceTo(searchRange.startIndex)
-                formatingStr.removeRange(tagRange)
-                searchRange = formatingStr.startIndex.advancedBy(currentDistance)..<formatingStr.endIndex
-            } else {
-                searchRange.startIndex = tagRange.endIndex
-            }
-        }
-        
-        // Add attributes
-        let attrStr = NSMutableAttributedString(string: formatingStr)
-        for index in 0..<tags.count {
-            let attrTag = tags[index]
-            if !attrTag.isEmpty {
-                if let attrType = AttributeType(rawValue: attrTag.tag) {
-                    if let value: AnyObject = attrType.valueForParams(attrTag.params) {
-                        let rangeNS = NSMakeRange(attrTag.location, attrTag.length)
-                        attrStr.addAttribute(attrType.attributeName, value: value, range: rangeNS)
+            // Apply all tags starting from outside
+            for index in 0..<tagQueue.count {
+                let tag = tagQueue[index]
+                if tag.isOpeningTag {
+                    guard let attribute = AttributeType(rawValue: tag.name) else { continue }
+                    
+                    removeTag(index: index)
+                    if let closeIndex = tag.endingTagIndex {
+                        guard closeIndex < tagQueue.count else { continue }
+                        let closingTag = tagQueue[closeIndex]
+                        removeTag(index: closeIndex)
+                        
+                        let attrName:String = attribute.name
+                        let attrValue:Any? = attribute.valueForParams(tag.paramString ?? "")
+                        
+                        if let attrValue = attrValue {
+                            let location = tag.range.location
+                            let length = closingTag.range.location-location
+                            print(location, length)
+                            attrStr.addAttribute(attrName, value: attrValue, range: NSRange(location: location, length: length))
+                        }
                     }
                 }
+                
             }
         }
         
         return attrStr
     }
+}
+
+extension AKAttributeKit {
     
-    private class func indexOfLatestOpenTag(ofType type:String, inQeue qeue:[AttributeTag])->Int?
-    {
-        for index in Array((0..<qeue.count).reverse()){
-            let attrTag = qeue[index]
-            if(attrTag.isOpen && attrTag.tag == type) {
-                return index;
-            }
-        }
-        return nil
-    }
+    //---------------------------------------------------
+    // MARK: - Color Utils
+    //---------------------------------------------------
     
-    private class func fontFromString(fontStr:String)->UIFont?
+    fileprivate class func colorFromString(_ colorStr:String)->UIColor?
     {
-        var components = fontStr.componentsSeparatedByString("|");
-        if components.count >= 2 {
-            let fontName = components[0].trim()
-            let fontSize = components[1].toFailSafeFloat()
-            if let font = UIFont(name: fontName, size: CGFloat(fontSize)) {
-                return font
-            }
-        }
-        return nil;
-    }
-    
-    private class func colorFromString(colorStr:String)->UIColor?
-    {
-        if (colorStr as NSString).hasPrefix("UIDevice") {
-            return UIColor(colorString: colorStr)
-        }
-        
-        var components = colorStr.componentsSeparatedByString("|");
+        var components = colorStr.components(separatedBy: "|");
         if components.count >= 3 {
             let r = self.toColorPart(components[0])
             let g = self.toColorPart(components[1])
@@ -278,17 +279,34 @@ public class AKAttributeKit {
             let a = components.count >= 4 ? self.toColorPart(components[3]) : 1
             return UIColor(red: r, green: g, blue: b, alpha: a)
         } else if components.count == 1 {
-            return UIColor.colorFromString(hexString: components[0])
+            return try? UIColor(hexString: components[0])
         }
         return nil
     }
     
-    private class func toColorPart(strValue:String)->CGFloat
+    fileprivate class func toColorPart(_ strValue:String)->CGFloat
     {
         let value = strValue.toFailSafeInt()
         var fVal:Float = Float(value)
         fVal /= 255.0
         return CGFloat(fVal);
+    }
+    
+    //---------------------------------------------------
+    // MARK: - Font Utils
+    //---------------------------------------------------
+    
+    fileprivate class func fontFromString(_ fontStr:String)->UIFont?
+    {
+        var components = fontStr.components(separatedBy: "|");
+        if components.count >= 2 {
+            let fontName = components[0].trim()
+            let fontSize = components[1].toFailSafeInt()
+            if let font = UIFont(name: fontName, size: CGFloat(fontSize)) {
+                return font
+            }
+        }
+        return nil;
     }
 }
 

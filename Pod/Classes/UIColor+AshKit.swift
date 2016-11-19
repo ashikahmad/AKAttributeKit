@@ -10,24 +10,30 @@ import Foundation
 import UIKit
 
 public extension UIColor {
+    
+    public enum ParseError: Error {
+        // "Error: Inavlid format string: \(hexStr). Check documantation for correct formats"
+        case InvalidFormat
+    }
+    
     /**
     Represents web-firnedly hexadecimal string representation of this color,
     
     Example: `#FF0000FF` for Red, `#FFFF00FF` for Yellow
     */
     public var hexString:String? {
-        let nComp = CGColorGetNumberOfComponents(self.CGColor)
-        let comp = CGColorGetComponents(self.CGColor)
+        let nComp = self.cgColor.numberOfComponents
+        let comp = self.cgColor.components
         
         if (nComp == 4) { // RGB ColorSpace
-            let r = Int(comp[0] * 255)
-            let g = Int(comp[1] * 255)
-            let b = Int(comp[2] * 255)
-            let a = Int(comp[3] * 255)
+            let r = Int((comp?[0])! * 255)
+            let g = Int((comp?[1])! * 255)
+            let b = Int((comp?[2])! * 255)
+            let a = Int((comp?[3])! * 255)
             return NSString(format: "#%02X%02X%02X%02X", r, g, b, a) as String
         } else if (nComp == 2) { // White ColorSpace
-            let w = Int(comp[0] * 255)
-            let a = Int(comp[1] * 255)
+            let w = Int((comp?[0])! * 255)
+            let a = Int((comp?[1])! * 255)
             return NSString(format: "#%02X%02X%02X%02X", w, w, w, a) as String
         }
         
@@ -40,53 +46,39 @@ public extension UIColor {
     - parameter hexStr: String in any of these formats: `rgb | rgba | rrggbb | rrggbba` with or without prefix: `0x | #`
     - returns: UIColor from the `hexStr` if it is parsed successfully, nil otherwise.
     */
-    public class func colorFromString(hexString hexStr: String)->UIColor?
-    {
+    public convenience init(hexString hexStr: String) throws {
         // 1. Make uppercase to reduce conditions
-        var cStr = hexStr.trim().uppercaseString;
-        
+        var cStr = hexStr.trim().uppercased()
         // 2. Check if valid input
-        let validRange = cStr.rangeOfString("\\b(0X|#)?([0-9A-F]{3,4}|[0-9A-F]{6}|[0-9A-F]{8})\\b", options: NSStringCompareOptions.RegularExpressionSearch)
-        if validRange == nil {
-            print("Error: Inavlid format string: \(hexStr). Check documantation for correct formats", terminator: "")
-            return nil
+        guard let validRange = cStr.range(of: "\\b(0X|#)?([0-9A-F]{3,4}|[0-9A-F]{6}|[0-9A-F]{8})\\b", options: NSString.CompareOptions.regularExpression) else {
+            throw ParseError.InvalidFormat
         }
         
-        cStr = cStr.substringWithRange(validRange!)
+        cStr = cStr.substring(with: validRange)
+            .removing(prefix: "0X")
+            .removing(prefix: "#")
         
-        if(cStr.hasPrefix("0X")) {
-            cStr = cStr.substringFromIndex(cStr.startIndex.advancedBy(2))
-        } else if(cStr.hasPrefix("#")) {
-            cStr = cStr.substringFromIndex(cStr.startIndex.advancedBy(1))
+        var strLen = cStr.length
+        if (strLen == 3 || strLen == 4) { // Make it double
+            cStr = cStr.characters.reduce("") { $0 + "\($1)\($1)" }
         }
         
-        let strLen = cStr.length
-        if (strLen == 3 || strLen == 4) {
-            // Make it double
-            var str2 = ""
-            for ch in cStr.characters {
-                str2 += "\(ch)\(ch)"
-            }
-            cStr = str2
-        } else if (strLen == 6 || strLen == 8) {
-            // Do nothing
-        } else {
-            return nil
+        strLen = cStr.length
+        guard strLen == 6 || strLen == 8 else {
+            throw ParseError.InvalidFormat
         }
         
-        let scanner = NSScanner(string: cStr)
+        let scanner = Scanner(string: cStr)
         var hexValue: CUnsignedLongLong = 0
-        if scanner.scanHexLongLong(&hexValue) {
-            if cStr.characters.count == 8 {
-                return UIColor(rgba:hexValue)
-            } else {
-                return UIColor(rgb:hexValue)
-            }
-        } else {
-            print("scan hex error")
+        guard scanner.scanHexInt64(&hexValue) else {
+            throw ParseError.InvalidFormat
         }
         
-        return nil
+        if strLen == 8 {
+            self.init(rgba:hexValue)
+        } else {
+            self.init(rgb:hexValue)
+        }
     }
     
     /**
@@ -130,7 +122,7 @@ public extension UIColor {
     - returns: UIColor created back from `colorString`
     */
     public convenience init(colorString cStr:String) {
-        let comp = cStr.componentsSeparatedByString(" ")
+        let comp = cStr.components(separatedBy: " ")
         if comp.count > 0{
             switch comp[0] {
             case "UIDeviceRGBColorSpace":

@@ -1,0 +1,6 @@
+framework module AKAttributeKit {
+  umbrella header "AKAttributeKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
