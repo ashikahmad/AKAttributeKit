@@ -172,7 +172,7 @@ public class AKAttributeKit {
                         if let attrValue = attrValue {
                             let location = tag.range.location
                             let length = closingTag.range.location-location
-                            print(location, length)
+                            
                             attrStr.addAttribute(attrName, value: attrValue, range: NSRange(location: location, length: length))
                         }
                     }
