@@ -15,11 +15,11 @@
 		3B1FAF111A06888D007F04A7 /* AKAttributeKitDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FAF101A06888D007F04A7 /* AKAttributeKitDemoTests.swift */; };
 		3B7F45511B72504000B8B83A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F45501B72504000B8B83A /* README.md */; };
 		3BA7B2D91A09176300D52A48 /* AKAttributeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7B2D81A09176300D52A48 /* AKAttributeKit.swift */; };
-		3BFCEC331A0D4A22008D4BA9 /* String+AKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC321A0D4A22008D4BA9 /* String+AKExtension.swift */; };
-		3BFCEC351A0D4A96008D4BA9 /* UIColor+AKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC341A0D4A96008D4BA9 /* UIColor+AKExtension.swift */; };
+		3BFCEC331A0D4A22008D4BA9 /* String+AshKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC321A0D4A22008D4BA9 /* String+AshKit.swift */; };
+		3BFCEC351A0D4A96008D4BA9 /* UIColor+AshKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC341A0D4A96008D4BA9 /* UIColor+AshKit.swift */; };
 		3BFCEC361A0D560F008D4BA9 /* AKAttributeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7B2D81A09176300D52A48 /* AKAttributeKit.swift */; };
-		3BFCEC371A0D5612008D4BA9 /* String+AKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC321A0D4A22008D4BA9 /* String+AKExtension.swift */; };
-		3BFCEC381A0D5615008D4BA9 /* UIColor+AKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC341A0D4A96008D4BA9 /* UIColor+AKExtension.swift */; };
+		3BFCEC371A0D5612008D4BA9 /* String+AshKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC321A0D4A22008D4BA9 /* String+AshKit.swift */; };
+		3BFCEC381A0D5615008D4BA9 /* UIColor+AshKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCEC341A0D4A96008D4BA9 /* UIColor+AshKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +45,8 @@
 		3B1FAF101A06888D007F04A7 /* AKAttributeKitDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKAttributeKitDemoTests.swift; sourceTree = "<group>"; };
 		3B7F45501B72504000B8B83A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		3BA7B2D81A09176300D52A48 /* AKAttributeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKAttributeKit.swift; sourceTree = "<group>"; };
-		3BFCEC321A0D4A22008D4BA9 /* String+AKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AKExtension.swift"; sourceTree = "<group>"; };
-		3BFCEC341A0D4A96008D4BA9 /* UIColor+AKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AKExtension.swift"; sourceTree = "<group>"; };
+		3BFCEC321A0D4A22008D4BA9 /* String+AshKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AshKit.swift"; sourceTree = "<group>"; };
+		3BFCEC341A0D4A96008D4BA9 /* UIColor+AshKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AshKit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				3BA7B2D81A09176300D52A48 /* AKAttributeKit.swift */,
-				3BFCEC321A0D4A22008D4BA9 /* String+AKExtension.swift */,
-				3BFCEC341A0D4A96008D4BA9 /* UIColor+AKExtension.swift */,
+				3BFCEC321A0D4A22008D4BA9 /* String+AshKit.swift */,
+				3BFCEC341A0D4A96008D4BA9 /* UIColor+AshKit.swift */,
 			);
 			name = AshKit;
 			path = ../../AshKit;
@@ -180,14 +180,17 @@
 		3B1FAEED1A06888D007F04A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = WNeeds;
 				TargetAttributes = {
 					3B1FAEF41A06888D007F04A7 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 5DV6KZN6C5;
+						LastSwiftMigration = 0800;
 					};
 					3B1FAF091A06888D007F04A7 = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 3B1FAEF41A06888D007F04A7;
 					};
 				};
@@ -238,10 +241,10 @@
 			files = (
 				3B7F45511B72504000B8B83A /* README.md in Sources */,
 				3B1FAEFD1A06888D007F04A7 /* ViewController.swift in Sources */,
-				3BFCEC331A0D4A22008D4BA9 /* String+AKExtension.swift in Sources */,
+				3BFCEC331A0D4A22008D4BA9 /* String+AshKit.swift in Sources */,
 				3B1FAEFB1A06888D007F04A7 /* AppDelegate.swift in Sources */,
 				3BA7B2D91A09176300D52A48 /* AKAttributeKit.swift in Sources */,
-				3BFCEC351A0D4A96008D4BA9 /* UIColor+AKExtension.swift in Sources */,
+				3BFCEC351A0D4A96008D4BA9 /* UIColor+AshKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B1FAF111A06888D007F04A7 /* AKAttributeKitDemoTests.swift in Sources */,
-				3BFCEC381A0D5615008D4BA9 /* UIColor+AKExtension.swift in Sources */,
-				3BFCEC371A0D5612008D4BA9 /* String+AKExtension.swift in Sources */,
+				3BFCEC381A0D5615008D4BA9 /* UIColor+AshKit.swift in Sources */,
+				3BFCEC371A0D5612008D4BA9 /* String+AshKit.swift in Sources */,
 				3BFCEC361A0D560F008D4BA9 /* AKAttributeKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,15 +302,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -341,8 +348,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -350,6 +359,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -359,6 +369,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -367,10 +378,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5DV6KZN6C5;
 				INFOPLIST_FILE = AKAttributeKitDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wneeds.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -378,10 +392,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5DV6KZN6C5;
 				INFOPLIST_FILE = AKAttributeKitDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wneeds.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -399,7 +416,9 @@
 				);
 				INFOPLIST_FILE = AKAttributeKitDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wneeds.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AKAttributeKitDemo.app/AKAttributeKitDemo";
 			};
 			name = Debug;
@@ -414,7 +433,9 @@
 				);
 				INFOPLIST_FILE = AKAttributeKitDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wneeds.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AKAttributeKitDemo.app/AKAttributeKitDemo";
 			};
 			name = Release;
