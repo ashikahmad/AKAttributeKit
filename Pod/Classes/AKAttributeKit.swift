@@ -71,7 +71,8 @@ open class AKAttributeKit {
       3. **Insert UIColor:** Directly insert UIColor into swift string like `<tag \(myColor)>` where myColor is any UIColor other than `colorWithPatternImage`.
     - ### Font
       1. **Param sequence:** `fontName|fontSize` param sequence where fontName is String and fontSize is Float
-      2. **Insert UIFont:** Directly insert UIFont into swift string like `<font \(myFont.asAKAttribute())>`
+      2. **System font:** Provide only fontSize to use system font
+      3. **Insert UIFont:** Directly insert UIFont into swift string like `<font \(myFont.asAKAttribute())>`
     - ### Link
       String of any valid URL format
     */
@@ -299,7 +300,10 @@ extension AKAttributeKit {
     fileprivate class func fontFromString(_ fontStr:String)->UIFont?
     {
         var components = fontStr.components(separatedBy: "|");
-        if components.count >= 2 {
+        if components.count == 1 {
+           let fontSize = components[0].toFailSafeInt()
+           return UIFont.systemFont(ofSize: CGFloat(fontSize))
+        } else if components.count >= 2 {
             let fontName = components[0].trim()
             let fontSize = components[1].toFailSafeInt()
             if let font = UIFont(name: fontName, size: CGFloat(fontSize)) {
@@ -309,4 +313,3 @@ extension AKAttributeKit {
         return nil;
     }
 }
-

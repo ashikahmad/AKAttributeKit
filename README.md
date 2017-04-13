@@ -43,14 +43,14 @@ There are some other libraries to create NSAttributedString form HTML. This is n
 
 ## Tags (Short Reference)
 
-Tag | Attribute | Example 
+Tag | Attribute | Example
  --- | --- | ---
  `a` | NSLinkAttributeName | `<a http://google.com>Google</a>`
  `base` | NSBaselineOffsetAttributeName | `square<base 15>2</base>`
  `bg` | NSBackgroundColorAttributeName | `<bg #00ff00>Green</bg>` or <code>\<bg 255&#124;255&#124;0>Yellow\</bg></code>
  `ex` | NSExpansionAttributeName | `<ex 5>WIDE</ex>`
  `fg` | NSForegroundColorAttributeName | `<fg #ff0000>Red</fg>` or <code>\<fg 0&#124;0&#124;255>Blue\</fg></code>
- `font` | NSFontAttributeName | <code>Different \<font Arial&#124;18>Font\</font></code>
+ `font` | NSFontAttributeName | <code>Different \<font Arial&#124;18>Font\</font> and \<font 21>system font\</font></code>
  `i` | NSObliquenessAttributeName | `<i 0.5>Italic</i>` or `<i 0.8>oblique</i>`
  `k` | NSKernAttributeName | `<k 20>Huge Space</k>`
  `sc`,<br/> `sw` | NSStrokeColorAttributeName,<br/> NSStrokeWidthAttributeName | `<sc #f00><sw 2>Storked Text</sw></sc>`
@@ -69,7 +69,7 @@ Link | Any valid URL format | `a`
 Int | Any integer value supported by respective attribute | `t`, `u`
 Float | Any float value | `base`, `ex`, `i`, `k`, `sw`
 Color | 1. **Hex formats:**  `rgb`, `rgba`, `rrggbb`, `rrggbbaa` with or without `0x` or `#` prefix <br/> 2. **Integer sequence:**  <code>r&#124;g&#124;b&#124;a</code> param sequence where all params in sequence are Int ranges from 0-255. <br/> 3. **Insert UIColor:** Directly insert UIColor into swift string like `<tag \(myColor)>` where myColor is any UIColor other than `colorWithPatternImage`. | `bg`, `fg`, `sc`, `tc`, `uc`
-Font | 1. **Param sequence:** <code>fontName&#124;fontSize</code> param sequence where fontName is String and fontSize is Float <br/> 2. **Insert UIFont:** Directly insert UIFont into swift string like `<font \(myFont.asAKAttribute())>`  | `font`
+Font | 1. **Param sequence:** <code>fontName&#124;fontSize</code> param sequence where fontName is String and fontSize is Float <br/> 2. **System font:** Provide only fontSize to use system font <br/> 3. **Insert UIFont:** Directly insert UIFont into swift string like `<font \(myFont.asAKAttribute())>`  | `font`
 
 ## Installation
 
@@ -84,7 +84,7 @@ pod "AKAttributeKit"
 
 Below is some TODOs that I have plan to implement. New ideas and/or help on current tasks are most welcome :D
 
-- [ ] For common tags with (almost) obvius choices make parameter optional.
+- [ ] For common tags with (almost) obvious choices make parameter optional.
   - [x] underline
   - [x] italic
   - [x] Strike through
